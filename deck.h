@@ -2,6 +2,9 @@
 #define __DECK__
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 
 typedef enum kind_e
 {
