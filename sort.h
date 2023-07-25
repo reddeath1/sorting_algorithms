@@ -20,6 +20,7 @@ typedef struct listint_s
     struct listint_s *next;
 } listint_t;
 
+void partition_merger(size_t lower, size_t higher, int *array, int *base);
 int quick_partition(int *array, int lower, int higher, size_t size);
 void _merge(size_t lower, size_t middle, size_t higher, int *dest, int *src);
 void _partition(size_t lower, size_t higher, int *array, int *base);
