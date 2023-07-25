@@ -1,9 +1,11 @@
 #include "sort.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * merge_sort - Main function that sorts array using merge algorithm.
- * @array: An array to sort.
- * @size: An size of the array.
+ * merge_sort - Main function that sorts an array using merge algorithm.
+ * @array: The array to sort.
+ * @size: The size of the array.
  * Return: (Nothing).
  */
 void merge_sort(int *array, size_t size)
@@ -18,22 +20,22 @@ void merge_sort(int *array, size_t size)
 		return;
 	for (; i < size; i++)
 		base[i] = array[i];
-	merge_partition(0, size, array, base);
+	partition_merger(0, size, array, base);
 	free(base);
 }
 
 /**
- * _merge - Main function that sort the sub arrays.
- * @lower: A Lower index.
- * @middle: A Middle index.
- * @higher: A Higher index.
+ * merger - Main function that sorts the subarrays.
+ * @lower: Lower index.
+ * @middle: Middle index.
+ * @higher: Higher index.
  * @dest: The Destination for data.
  * @src: The Input data.
- * Return: (Nothing).
+ * Return: (Nothing)
  */
-void _merge(size_t lower, size_t middle, size_t higher, int *dest, int *src)
+void merger(size_t lower, size_t middle, size_t higher, int *dest, int *src)
 {
-	size_t i = 0, j = 0, c = 0;
+	size_t i = 0, j = 0, k = 0;
 
 	printf("Merging...\n");
 	printf("[left]: ");
@@ -42,17 +44,17 @@ void _merge(size_t lower, size_t middle, size_t higher, int *dest, int *src)
 	print_array(src + middle, higher - middle);
 	i = lower;
 	j = middle;
-	c = lower;
-		for (; c < higher; c++)
+	k = lower;
+		for (; k < higher; k++)
 		{
 			if (i < middle && (j >= higher || src[i] <= src[j]))
 			{
-				dest[c] = src[i];
+				dest[k] = src[i];
 				i++;
 			}
 			else
 			{
-				dest[c] = src[j];
+				dest[k] = src[j];
 				j++;
 			}
 		}
@@ -61,23 +63,23 @@ void _merge(size_t lower, size_t middle, size_t higher, int *dest, int *src)
 }
 
 /**
- * _partition - Main funtion that splits the array recursively.
- * @lower: A Lower index.
- * @higher: A Higher index.
+ * merge_partition - A funtion that splits the array recursively.
+ * @lo: Lower index.
+ * @hi: Higher index.
  * @array: The array to sort.
- * @base: A copy of the array.
- * Return: (Nothing).
+ * @base: The copy of the array.
+ * Return: Nothing.
  */
-void _partition(size_t lower, size_t higher, int *array, int *base)
+void partition_merger(size_t lower, size_t higher, int *array, int *base)
 {
 	size_t middle = 0;
 
 	if (higher - lower < 2)
 		return;
 	middle = (lower + higher) / 2;
-	_partition(lower, middle, array, base);
-	_partition(middle, higher, array, base);
-	merge(lower, middle, higher, array, base);
+	partition_merger(lower, middle, array, base);
+	partition_merger(middle, higher, array, base);
+	merger(lower, middle, higher, array, base);
 	for (middle = lower; middle < higher; middle++)
 		base[middle] = array[middle];
 }
