@@ -8,7 +8,7 @@
  * @size: size of the array.
  * Return: (Nothing)
  */
-void swap_root(int *array, size_t root, size_t higher, size_t size)
+void _swap(int *array, size_t root, size_t higher, size_t size)
 {
 	size_t lower = 0, middle = 0, tmp = 0;
 	int a = 0;
